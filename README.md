@@ -1,75 +1,111 @@
-# Hi there, I'm Dermalytics 👋
+# Dermalytics
 
 <div align="center">
 
 ![Dermalytics Logo](https://www.dermalytics.dev/icon.svg)
 
-**Research-backed skincare ingredient analysis API for developers**
+**Research-backed skincare ingredient intelligence for developers.**
 
-[🌐 Website](https://www.dermalytics.dev/) • [📖 Docs](https://www.dermalytics.dev/docs) • [💬 Contact](https://www.dermalytics.dev/contact) • [🐦 X/Twitter](https://x.com/dermalytics)
+[Website](https://www.dermalytics.dev/) -
+[API Docs](https://api.dermalytics.dev/docs) -
+[OpenAPI](https://api.dermalytics.dev/openapi.json) -
+[Contact](mailto:contact@dermalytics.dev) -
+[X](https://x.com/dermalytics)
 
-[![Status](https://img.shields.io/badge/status-coming%20soon-blue)](https://www.dermalytics.dev/)
-[![Website](https://img.shields.io/badge/website-dermalytics.dev-blue)](https://www.dermalytics.dev/)
+[![Status](https://img.shields.io/badge/status-live-brightgreen)](https://www.dermalytics.dev/)
+[![API](https://img.shields.io/badge/API-production-blue)](https://api.dermalytics.dev/docs)
+[![npm](https://img.shields.io/npm/v/dermalytics?label=npm)](https://www.npmjs.com/package/dermalytics)
+[![PyPI](https://img.shields.io/pypi/v/dermalytics?label=PyPI)](https://pypi.org/project/dermalytics/)
 
 </div>
 
 ---
 
-## 🔬 About Dermalytics
+## What We Build
 
-**Dermalytics** is a comprehensive skincare ingredient analysis API that empowers developers to build better beauty tech products. We provide research-backed ingredient data, safety ratings, and personalized skincare recommendations through a developer-friendly REST API.
+Dermalytics is a live skincare ingredient analysis API for apps, agents, and developer tools. It helps teams look up cosmetic ingredients, analyze full INCI lists, and build product experiences with structured safety and ingredient data.
 
-### ✨ What We Offer
+The public API supports:
 
-- 🔬 **30,000+ Ingredients** - Comprehensive database with scientific backing
-- 🛡️ **Safety Ratings** - Research-backed safety analysis and allergen detection  
-- 🎯 **Product Scanning** - Real-time formulation analysis with intelligent parsing
-- 💡 **Recommendations** - Personalized skincare suggestions based on skin type
-- 🚀 **Developer-First** - Simple REST API with comprehensive documentation
+- Single ingredient lookup by INCI-style name or synonym
+- Batch product ingredient analysis
+- Safety severity scoring
+- Comedogenicity and irritancy ratings when available
+- CAS, EC, Ph. Eur. and formula metadata
+- Cosmetic function lists and ingredient trait flags
+- Credit-aware REST responses
+- MCP access for AI agents using the same API key
 
-## 🛠️ Tech Stack
+## Get Started
 
-### Frontend
-![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
-![React](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwind-css)
+Use the hosted API directly:
 
-### Backend & Infrastructure
-![Fast Backend](https://img.shields.io/badge/Backend-Fast%20%26%20Scalable-green?style=for-the-badge)
-![Scalable Systems](https://img.shields.io/badge/Architecture-Scalable-orange?style=for-the-badge)
-![REST API](https://img.shields.io/badge/API-REST-blue?style=for-the-badge&logo=api)
-![Cloud](https://img.shields.io/badge/Cloud-Ready-9cf?style=for-the-badge&logo=cloudflare)
+```bash
+curl "https://api.dermalytics.dev/v1/ingredients/niacinamide" \
+  -H "Authorization: Bearer $DERMALYTICS_API_KEY"
+```
 
-## 📊 Key Features
+Or install an SDK:
 
-- **Ingredient Analysis**: INCI name + CAS number lookup, safety ratings, skin type compatibility
-- **Product Scanning**: Real-time ingredient list analysis with concentration-aware evaluation
-- **Safety Detection**: Comprehensive allergen database, irritant detection, regulatory compliance
-- **Recommendation Engine**: Skin type matching, concern-based filtering, smart product suggestions
+```bash
+npm install dermalytics
+```
 
-## 🌐 Connect With Us
+```bash
+pip install dermalytics
+```
 
-<div align="center">
+## Public Repositories
 
-[![Website](https://img.shields.io/badge/Website-dermalytics.dev-blue?style=for-the-badge)](https://www.dermalytics.dev/)
-[![X/Twitter](https://img.shields.io/badge/X/Twitter-@dermalytics-black?style=for-the-badge&logo=x)](https://x.com/dermalytics)
-[![Email](https://img.shields.io/badge/Email-contact@dermalytics.dev-red?style=for-the-badge&logo=gmail)](mailto:contact@dermalytics.dev)
+| Repository | Description |
+| --- | --- |
+| [dermalytics-js](https://github.com/dermalytics-dev/dermalytics-js) | JavaScript and TypeScript SDK for the Dermalytics API. |
+| [dermalytics-python](https://github.com/dermalytics-dev/dermalytics-python) | Python SDK for ingredient lookup and product analysis. |
+| [dermalytics-dev](https://github.com/dermalytics-dev/dermalytics-dev) | GitHub organization profile. |
 
-</div>
+## API Surfaces
 
-## 🚀 Coming Soon
+| Surface | URL |
+| --- | --- |
+| Website | <https://www.dermalytics.dev/> |
+| Swagger UI | <https://api.dermalytics.dev/docs> |
+| OpenAPI JSON | <https://api.dermalytics.dev/openapi.json> |
+| MCP docs | <https://api.dermalytics.dev/v1/mcp/docs> |
 
-We're building the most comprehensive skincare ingredient API for developers. Join our waitlist to get early access!
+## SDK Examples
 
-**[👉 Join the Waitlist](https://www.dermalytics.dev/)**
+TypeScript:
+
+```ts
+import { Dermalytics } from 'dermalytics';
+
+const client = new Dermalytics({ apiKey: process.env.DERMALYTICS_API_KEY! });
+const ingredient = await client.getIngredient('niacinamide');
+
+console.log(ingredient.trait_flags);
+```
+
+Python:
+
+```python
+from dermalytics import Dermalytics
+
+client = Dermalytics(api_key="YOUR_API_KEY")
+ingredient = client.get_ingredient("niacinamide")
+
+print(ingredient["trait_flags"])
+```
+
+## Connect
+
+- Website: <https://www.dermalytics.dev/>
+- X: <https://x.com/dermalytics>
+- Email: <contact@dermalytics.dev>
 
 ---
 
 <div align="center">
 
-**Built with ❤️ by the Dermalytics team**
-
-⭐ Star our repos if you find them interesting!
+Built by the Dermalytics team.
 
 </div>
