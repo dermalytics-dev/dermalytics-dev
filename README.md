@@ -41,12 +41,15 @@ The public API supports:
 
 ## Get Started
 
-Use the hosted API directly:
+Try the hosted REST API without registration:
 
 ```bash
-curl "https://api.dermalytics.dev/v1/ingredients/niacinamide" \
-  -H "Authorization: Bearer $DERMALYTICS_API_KEY"
+curl "https://api.dermalytics.dev/v1/ingredients/niacinamide"
 ```
+
+You can make 5 requests per IP in a 24-hour window starting with the first request, shared across all REST data endpoints. Search returns up to 3 results without pagination; analysis accepts up to 5 ingredient names. Admitted empty or invalid requests count too. Shared networks share the allowance; IPv6 uses a /64 network.
+
+The API sends remaining/reset headers and, from the second request, an `X-API-Key-URL` registration link. After the allowance, HTTP 429 includes the link and `Retry-After`. [Register for an API key](https://www.dermalytics.dev/dashboard) and 100 welcome credits, then send `Authorization: Bearer YOUR_API_KEY` for full access. Hosted MCP always requires a key.
 
 Or install an SDK:
 
@@ -75,7 +78,7 @@ pip install dermalytics
 | OpenAPI JSON | <https://api.dermalytics.dev/openapi.json> |
 | MCP docs | <https://api.dermalytics.dev/v1/mcp/docs> |
 
-Both SDK repositories are preparing version **1.0.0** with catalog methods and a runtime public-field allowlist. Registry publication is pending; the install commands above currently install the previously published releases. REST, MCP and the dashboard already support the catalog. Product responses omit slugs, source URLs, copied descriptions, images, barcodes and internal metadata. Stored ratings and tags are informational and may be incomplete.
+Both SDK repositories are preparing version **1.0.0** with catalog methods, optional API keys and a runtime public-field allowlist. Registry publication is pending; the install commands above currently install the previously published releases. REST, MCP and the dashboard already support the catalog. Product responses omit slugs, source URLs, copied descriptions, images, barcodes and internal metadata. Stored ratings and tags are informational and may be incomplete.
 
 ## SDK Examples
 
