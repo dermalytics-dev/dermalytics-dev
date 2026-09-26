@@ -4,7 +4,7 @@
 
 ![Dermalytics Logo](https://www.dermalytics.dev/icon.svg)
 
-**Research-backed skincare ingredient intelligence for developers.**
+**Structured cosmetic ingredient and product data for developers.**
 
 [Website](https://www.dermalytics.dev/) -
 [API Docs](https://api.dermalytics.dev/docs) -
@@ -27,6 +27,9 @@ Dermalytics is a live skincare ingredient analysis API for apps, agents, and dev
 
 The public API supports:
 
+- Ingredient search by name, synonym or CAS/EC identifiers
+- Product search by name or brand, with ingredient filters
+- Product lookup with a stored ingredient list
 - Single ingredient lookup by INCI-style name or synonym
 - Batch product ingredient analysis
 - Safety severity scoring
@@ -60,7 +63,7 @@ pip install dermalytics
 | Repository | Description |
 | --- | --- |
 | [dermalytics-js](https://github.com/dermalytics-dev/dermalytics-js) | JavaScript and TypeScript SDK for the Dermalytics API. |
-| [dermalytics-python](https://github.com/dermalytics-dev/dermalytics-python) | Python SDK for ingredient lookup and product analysis. |
+| [dermalytics-python](https://github.com/dermalytics-dev/dermalytics-python) | Python SDK for ingredient and product search, lookup and analysis. |
 | [dermalytics-dev](https://github.com/dermalytics-dev/dermalytics-dev) | GitHub organization profile. |
 
 ## API Surfaces
@@ -71,6 +74,8 @@ pip install dermalytics
 | Swagger UI | <https://api.dermalytics.dev/docs> |
 | OpenAPI JSON | <https://api.dermalytics.dev/openapi.json> |
 | MCP docs | <https://api.dermalytics.dev/v1/mcp/docs> |
+
+Both SDK repositories are preparing version **1.0.0** with catalog methods and a runtime public-field allowlist. Registry publication is pending; the install commands above currently install the previously published releases. REST, MCP and the dashboard already support the catalog. Product responses omit slugs, source URLs, copied descriptions, images, barcodes and internal metadata. Stored ratings and tags are informational and may be incomplete.
 
 ## SDK Examples
 
