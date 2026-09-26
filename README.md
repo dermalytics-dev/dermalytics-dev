@@ -78,7 +78,7 @@ pip install dermalytics
 | OpenAPI JSON | <https://api.dermalytics.dev/openapi.json> |
 | MCP docs | <https://api.dermalytics.dev/v1/mcp/docs> |
 
-Both SDK repositories are preparing version **1.0.0** with catalog methods, optional API keys and a runtime public-field allowlist. Registry publication is pending; the install commands above currently install the previously published releases. REST, MCP and the dashboard already support the catalog. Product responses omit slugs, source URLs, copied descriptions, images, barcodes and internal metadata. Stored ratings and tags are informational and may be incomplete.
+Both SDKs **1.0.0** are published on npm and PyPI with catalog search, product lookup, analysis, optional API keys and filtering to documented response fields. REST, MCP and the dashboard support the same catalog. Product responses omit slugs, source URLs, copied descriptions, images, barcodes and internal metadata. Stored ratings and tags are informational and may be incomplete.
 
 ## SDK Examples
 
@@ -87,10 +87,9 @@ TypeScript:
 ```ts
 import { Dermalytics } from 'dermalytics';
 
-const client = new Dermalytics({ apiKey: process.env.DERMALYTICS_API_KEY! });
-const ingredient = await client.getIngredient('niacinamide');
-
-console.log(ingredient.trait_flags);
+const client = new Dermalytics();
+const page = await client.searchProducts('cream');
+console.log(page.data);
 ```
 
 Python:
@@ -98,11 +97,12 @@ Python:
 ```python
 from dermalytics import Dermalytics
 
-client = Dermalytics(api_key="YOUR_API_KEY")
-ingredient = client.get_ingredient("niacinamide")
-
-print(ingredient["trait_flags"])
+client = Dermalytics()
+page = client.search_products("cream")
+print(page["data"])
 ```
+
+The examples use the shared REST allowance without a key. For full access, pass `apiKey` in JavaScript or `api_key` in Python from an environment variable. See the [JavaScript SDK guide](https://github.com/dermalytics-dev/dermalytics-js#readme) and [Python SDK guide](https://github.com/dermalytics-dev/dermalytics-python#readme) for all methods, types, pagination and errors.
 
 ## Connect
 
